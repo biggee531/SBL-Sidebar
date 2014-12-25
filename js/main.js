@@ -1,9 +1,13 @@
-var app = angular.module('SBL',['ngRoute', 'ngAnimate']);
-
+var app = angular.module('SBL',[
+    'ngRoute',
+    'ngAnimate'
+    //'ui.bootstrap.showErrors'
+]);
+var baseUrl = 'SBL-Sidebar/';
 app.config([
-    '$routeProvider', '$locationProvider', function ($routeProvider) {
+    '$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
-            .when('/home', {
+            .when('/', {
                 templateUrl: 'templates/home.html',
                 controller: 'defaultControl',
                 activetab: 'home'
@@ -28,12 +32,8 @@ app.config([
                 controller: 'defaultControl',
                 activetab: 'contact'
             })
-            .otherwise('/home', {
-                templateUrl: 'templates/home.html',
-                controller: 'defaultControl',
-                activetab: 'home'
-            });
-//        $locationProvider.html5Mode(true);
+            .otherwise({ redirectTo: '/' });
+        $locationProvider.html5Mode(true);
     }
 ]);
 
